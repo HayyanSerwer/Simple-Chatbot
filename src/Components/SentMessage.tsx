@@ -1,19 +1,38 @@
 
 
-function SentMessage() {
 
+interface Prop{
+  messageSend: string;
+  sender: String;
+}
+function SentMessage(prop:Prop) {
 
-    return (
-    <>
-      <div className="w-full flex justify-end px-4">
+    if (prop.sender === "CHATGPT"){
+      return(
+      <div className="w-full flex justify-left px-4 mt-5">
         <div className="bg-blue-500 text-white px-4 py-2 rounded-2xl max-w-xs shadow-md">
         <p>
-            wasd
+            {prop.messageSend}
+         </p>
+    </div>
+    </div>
+      )
+    }
+    return (
+    <>
+      
+      <div className="w-full flex justify-end px-4 mt-5">
+        <div className="bg-blue-500 text-white px-4 py-2 rounded-2xl max-w-xs shadow-md">
+        <p>
+            {prop.messageSend}
          </p>
     </div>
     </div>
     </>
   )
-}
+
+
+  }
+
 
 export default SentMessage
