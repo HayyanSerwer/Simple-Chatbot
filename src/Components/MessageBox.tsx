@@ -20,8 +20,6 @@ function MessageBox() {
     return (
     <>
 
-
-    
     {messageList.map((msg, index) => (
       <SentMessage key={index} messageSend={msg.text} sender={msg.sender} />
     ))}
@@ -38,16 +36,12 @@ function MessageBox() {
                 setMessage(e.target.value);
                 
           }
-
               }
               onKeyDown={(e) => {if (e.key == 'Enter'){
-                
+              
                   sendMessage();
-
                   e.currentTarget.value = "";
                   
-
-
               }
 
               } }
