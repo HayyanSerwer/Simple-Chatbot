@@ -3,29 +3,34 @@ import SentMessage from './SentMessage'
 
 function MessageBox() {
 
-  const messageRecieve = <h1></h1>
+  const messageRecieved = <h1></h1>
 
   const [message, setMessage] = useState("");
 
   const [sentMessage, setSentMessage] = useState("")
 
-  const [messageList, setMessageList] = useState<string[]>([]);
+  const [messageList, setMessageList] = useState<{ sender: "user" | "chatgpt"; text: string }[]>([]);
 
+
+  const sendMessage = () => {
+    if (!message.trim()) return;
+
+    const newMessages = [...messageList, { sender: "user", text: message }];
+
+    newMessages.push({ sender: "chatgpt", text: "HI I AM CHAT GPT" });
+                                                                    
+    setMessageList(newMessages);  
+    setMessage("");
+  };
     return (
     <>
 
-<div className="pb-24">
-  
-  {messageList.map((msg, index) => (
-    <SentMessage key={index} messageSend={msg} sender="user" />
-  ))}
-</div>
 
-<div className="pb-24">
-  {messageList.map((msg, index) => (
-    <SentMessage key={index} messageSend={"HI I AM CHAT GPT"} sender="CHATGPT" />
-  ))}
-</div>
+    
+    {messageList.map((msg, index) => (
+      <SentMessage key={index} messageSend={msg.text} sender={msg.sender} />
+    ))}
+
 
 
 <div className="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 p-4">
@@ -34,7 +39,8 @@ function MessageBox() {
     <input
         
 
-        onChange={(e) => {setMessage(e.target.value);
+        onChange={(e) => {
+          setMessage(e.target.value);
           
     }
 
@@ -42,10 +48,8 @@ function MessageBox() {
         onKeyDown={(e) => {if (e.key == 'Enter'){
           
             console.log("working");
-
-            const previousMessages = messageList;
-            const newMessageList = [...previousMessages, message]; // Basically appending the list
-            setMessageList(newMessageList);
+            sendMessage();
+            messageList.push({sender: "user", text: message})
 
             setSentMessage("");
             e.currentTarget.value = sentMessage;
