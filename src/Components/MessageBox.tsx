@@ -8,15 +8,37 @@ function MessageBox() {
   const [messageList, setMessageList] = useState<{ sender: "user" | "chatgpt"; text: string }[]>([]);
 
 
-  const sendMessage = () => {
-    if (!message.trim()) return;
+const sendMessage = async () => {
+  if (!message.trim()) return;
 
-    const newMessages = [...messageList, { sender: "user" as const, text: message }];
-    newMessages.push({ sender: "chatgpt" as const, text: "HI I AM CHAT GPT" });
-                                                                    
-    setMessageList(newMessages);  
 
-  };
+  setMessageList(prev => [...prev, { sender: "user", text: message }]);
+  
+
+  setMessage("");
+
+  try {
+    // insane backend call using async await this time instead of promises
+    const response = await fetch("http://127.0.0.1:8000/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message }),
+    });
+    const data = await response.json();
+    
+    // response added
+    if (data.response) {
+      setMessageList(prev => [...prev, { sender: "chatgpt", text: data.response }]);
+    } else {
+      setMessageList(prev => [...prev, { sender: "chatgpt", text: "Oops! No response from server." }]);
+    }
+  } catch (error) {
+    setMessageList(prev => [...prev, { sender: "chatgpt", text: "Error connecting to server." }]);
+  }
+};
+
     return (
     <>
 

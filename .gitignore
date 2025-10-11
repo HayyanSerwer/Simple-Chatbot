@@ -1,3 +1,13 @@
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+myfastapienviroment/
+venv/
+.venv/
+
 # Logs
 logs
 *.log
@@ -22,3 +32,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
