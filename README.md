@@ -39,15 +39,15 @@ venv\\Scripts\\activate  # For Windows
 
 - Create a `.env` file in the backend directory to store your OpenAI API key:
 
-\`\`\`
+```
 OPENAI_API_KEY=your-api-key-here
-\`\`\`
+```
 
 - Run the FastAPI backend:
 
-\`\`\`bash
+```bash
 uvicorn main:app --reload
-\`\`\`
+```
 
 The server will start at \`http://127.0.0.1:8000\`.
 
@@ -55,16 +55,16 @@ The server will start at \`http://127.0.0.1:8000\`.
 
 - Navigate to the frontend directory and install dependencies.
 
-\`\`\`bash
+```bash
 cd frontend
 npm install
-\`\`\`
+```
 
 - To start the React application:
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 The frontend will start at \`http://127.0.0.1:5173\`.
 
