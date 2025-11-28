@@ -21,21 +21,21 @@ This project is a simple chat application built with **React**, **Tailwind CSS**
 
 ### 1. Clone the repository
 
-\`\`\`bash
+```bash
 git clone https://github.com/HayyanSerwer/Simple-Chatbot
 cd chat-application
-\`\`\`
+```
 
 ### 2. Backend (FastAPI)
 
 - Navigate to the backend directory and install dependencies.
 
-\`\`\`bash
+```bash
 cd backend
 python -m venv venv
 source venv/bin/activate  # For Linux/MacOS
 venv\\Scripts\\activate  # For Windows
-\`\`\`
+```
 
 - Create a `.env` file in the backend directory to store your OpenAI API key:
 
